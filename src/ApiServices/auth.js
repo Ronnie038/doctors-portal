@@ -5,7 +5,7 @@ const UseToken = (email) => {
 
 	useEffect(() => {
 		if (email) {
-			fetch(`http://localhost:5000/jwt?email=${email}`)
+			fetch(`https://doctors-portals-server-chi.vercel.app/jwt?email=${email}`)
 				.then((res) => res.json())
 				.then((data) => {
 					if (data.accessToken) {
@@ -23,7 +23,7 @@ const UseToken = (email) => {
 export { UseToken };
 
 // try {
-//     const res = await fetch(`http://localhost:5000/jwt?email=${email}`);
+//     const res = await fetch(`https://doctors-portals-server-chi.vercel.app/jwt?email=${email}`);
 //     const data = await res.json();
 //     if (data.accessToken) {
 //         localStorage.setItem('accessToken', data.accessToken);

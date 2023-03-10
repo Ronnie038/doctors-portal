@@ -7,7 +7,7 @@ import Loading from '../Shared/Loading/Loading';
 const MyAppointment = () => {
 	const { user, logOut } = useContext(AuthContext);
 
-	const url = `http://localhost:5000/bookings?email=${user?.email}`;
+	const url = `https://doctors-portals-server-chi.vercel.app/bookings?email=${user?.email}`;
 
 	const { data: bookings = [], isLoading } = useQuery({
 		queryKey: ['bookings', user?.email],

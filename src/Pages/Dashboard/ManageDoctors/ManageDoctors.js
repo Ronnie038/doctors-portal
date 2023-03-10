@@ -19,11 +19,14 @@ const ManageDoctors = () => {
 		queryKey: ['doctors'],
 		queryFn: async () => {
 			try {
-				const res = await fetch('http://localhost:5000/doctors', {
-					headers: {
-						authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-					},
-				});
+				const res = await fetch(
+					'https://doctors-portals-server-chi.vercel.app/doctors',
+					{
+						headers: {
+							authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+						},
+					}
+				);
 
 				const data = await res.json();
 
@@ -36,12 +39,15 @@ const ManageDoctors = () => {
 
 	const handleDoctorDelete = async (doctor) => {
 		try {
-			const res = await fetch(`http://localhost:5000/doctors/${doctor._id}`, {
-				method: 'delete',
-				headers: {
-					authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-				},
-			});
+			const res = await fetch(
+				`https://doctors-portals-server-chi.vercel.app/doctors/${doctor._id}`,
+				{
+					method: 'delete',
+					headers: {
+						authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+					},
+				}
+			);
 
 			const deletedDoctor = await res.json();
 

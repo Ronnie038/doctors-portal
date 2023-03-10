@@ -7,7 +7,9 @@ const AllUsers = () => {
 		queryKey: ['users'],
 		queryFn: async () => {
 			try {
-				const res = await fetch('http://localhost:5000/users');
+				const res = await fetch(
+					'https://doctors-portals-server-chi.vercel.app/users'
+				);
 				const data = await res.json();
 				return data;
 			} catch (err) {
@@ -16,7 +18,7 @@ const AllUsers = () => {
 		},
 	});
 	const handleMakeAdmin = (id) => {
-		fetch(`http://localhost:5000/users/addmin/${id}`, {
+		fetch(`https://doctors-portals-server-chi.vercel.app/users/addmin/${id}`, {
 			method: 'put',
 			headers: {
 				authorization: `bearer ${localStorage.getItem('accessToken')}`,

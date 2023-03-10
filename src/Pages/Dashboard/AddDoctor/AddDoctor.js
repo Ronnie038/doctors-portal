@@ -22,7 +22,9 @@ const AddDoctor = () => {
 		queryKey: ['specialty'],
 		queryFn: async () => {
 			try {
-				const res = await fetch(`http://localhost:5000/appointmentSpecialty`);
+				const res = await fetch(
+					`https://doctors-portals-server-chi.vercel.app/appointmentSpecialty`
+				);
 				const data = await res.json();
 
 				return data;
@@ -61,7 +63,7 @@ const AddDoctor = () => {
 
 					// save doctor inforamation to the databaSe
 
-					fetch('http://localhost:5000/doctors', {
+					fetch('https://doctors-portals-server-chi.vercel.app/doctors', {
 						method: 'post',
 						headers: {
 							'content-type': 'application/json',
