@@ -12,7 +12,7 @@ const AvailableAppointments = ({ selectedDate }) => {
 	// const { data: appointmentOptions = [] } = useQuery({
 	// 	queryKey: ['appointmentOptions'],
 	// 	queryFn: () =>
-	// 		fetch('https://doctors-portals-server-chi.vercel.app/appointmentOptions').then((res) =>
+	// 		fetch('${process.env.REACT_APP_url}/appointmentOptions').then((res) =>
 	// 			res.json()
 	// 		),
 	// });
@@ -28,7 +28,7 @@ const AvailableAppointments = ({ selectedDate }) => {
 		queryFn: async () => {
 			try {
 				const res = await fetch(
-					`https://doctors-portals-server-chi.vercel.app/v2/appointmentOptions?date=${date}`
+					`${process.env.REACT_APP_url}/v2/appointmentOptions?date=${date}`
 				);
 				const data = await res.json();
 				console.log(data);
@@ -40,7 +40,7 @@ const AvailableAppointments = ({ selectedDate }) => {
 	});
 
 	// useEffect(() => {
-	// 	fetch('https://doctors-portals-server-chi.vercel.app/appointmentOptions')
+	// 	fetch('${process.env.REACT_APP_url}/appointmentOptions')
 	// 		.then((res) => res.json())
 	// 		.then((data) => setAppointmentOptions(data));
 	// }, []);

@@ -7,9 +7,7 @@ const AllUsers = () => {
 		queryKey: ['users'],
 		queryFn: async () => {
 			try {
-				const res = await fetch(
-					'https://doctors-portals-server-chi.vercel.app/users'
-				);
+				const res = await fetch(`${process.env.REACT_APP_url}/users`);
 				const data = await res.json();
 				return data;
 			} catch (err) {
@@ -18,7 +16,7 @@ const AllUsers = () => {
 		},
 	});
 	const handleMakeAdmin = (id) => {
-		fetch(`https://doctors-portals-server-chi.vercel.app/users/addmin/${id}`, {
+		fetch(`${process.env.REACT_APP_url}/users/addmin/${id}`, {
 			method: 'put',
 			headers: {
 				authorization: `bearer ${localStorage.getItem('accessToken')}`,
@@ -36,6 +34,22 @@ const AllUsers = () => {
 		console.log(id);
 	};
 	const handleDelete = (id) => {
+		fetch(`${process.env.REACT_APP_url}/users/addmin/${id}`, {
+			method: 'delete',
+			headers: {
+				authorization: `bearer ${localStorage.getItem('accessToken')}`,
+			},
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				if (data.modifiedCount > 0) {
+					toast.success('delete success');
+					refetch();
+				}
+			})
+			.catch((err) => console.log(err));
+
 		console.log(id);
 	};
 	return (
@@ -72,7 +86,15 @@ const AllUsers = () => {
 								</th>
 								<th>
 									<button
-										onClick={() => handleDelete(user._id)}
+										onClick={() => {
+											let confirm = window.confirm(
+												'are sure you want to delete user'
+											);
+											if (!confirm) {
+												return;
+											}
+											handleDelete(user._id);
+										}}
 										className='btn btn-xs btn-error'
 									>
 										Delete

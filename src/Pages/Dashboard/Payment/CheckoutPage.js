@@ -72,7 +72,7 @@ const CheckoutPage = ({ booking }) => {
 				email,
 				bookingId: _id,
 			};
-			fetch('https://doctors-portals-server-chi.vercel.app/payments', {
+			fetch(`${process.env.REACT_APP_url}/payments`, {
 				method: 'POST',
 				headers: {
 					'content-type': 'application/json',
@@ -93,17 +93,14 @@ const CheckoutPage = ({ booking }) => {
 	};
 
 	useEffect(() => {
-		fetch(
-			'https://doctors-portals-server-chi.vercel.app/create-payment-intent',
-			{
-				method: 'POST',
-				headers: {
-					'content-type': 'application/json',
-					authorization: `bearer ${localStorage.getItem('accessToken')}`,
-				},
-				body: JSON.stringify({ price }),
-			}
-		)
+		fetch(`${process.env.REACT_APP_url}/create-payment-intent`, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+				authorization: `bearer ${localStorage.getItem('accessToken')}`,
+			},
+			body: JSON.stringify({ price }),
+		})
 			.then((res) => res.json())
 			.then((data) => setClientSecret(data.clientSecret))
 			.catch((err) => console.log(err));

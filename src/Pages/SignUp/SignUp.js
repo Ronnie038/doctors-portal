@@ -47,7 +47,7 @@ const SignUp = () => {
 
 	const saveUser = (name, email) => {
 		const user = { name, email };
-		fetch('https://doctors-portals-server-chi.vercel.app/users', {
+		fetch(`${process.env.REACT_APP_url}/users`, {
 			method: 'post',
 			headers: {
 				'content-type': 'application/json',

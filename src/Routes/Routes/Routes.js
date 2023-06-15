@@ -15,6 +15,7 @@ import DisplayError from '../../Pages/Shared/DisplayErrror/DisplayError';
 import SignUp from '../../Pages/SignUp/SignUp';
 import AdminRoute from '../PrivateRoute/AdminRoute/AdminRoute';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import About from '../../Pages/About/About';
 
 const router = createBrowserRouter([
 	{
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
 			{
 				path: '/appointment',
 				element: <Appointment></Appointment>,
+			},
+			{
+				path: '/about',
+				element: <About />,
 			},
 		],
 	},
@@ -81,9 +86,7 @@ const router = createBrowserRouter([
 				path: '/dashboard/payment/:id',
 				element: <Payment />,
 				loader: ({ params }) =>
-					fetch(
-						`https://doctors-portals-server-chi.vercel.app/booking/${params.id}`
-					),
+					fetch(`${process.env.REACT_APP_url}/booking/${params.id}`),
 			},
 		],
 	},

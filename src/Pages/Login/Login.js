@@ -11,7 +11,7 @@ const Login = () => {
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
-	const { signIn } = useContext(AuthContext);
+	const { signIn, loginWithGoogle } = useContext(AuthContext);
 	const [loginError, setLoginError] = useState('');
 	const [loginUserEmail, setLoginUserEmail] = useState('');
 	const [token] = UseToken(loginUserEmail);
@@ -42,6 +42,15 @@ const Login = () => {
 				console.log(error.message);
 				setLoginError(error.message);
 			});
+	};
+
+	const handleGoogleLogin = () => {
+		loginWithGoogle()
+			.then((result) => {
+				const user = result.user;
+			})
+			.catch((err) => console.log(err))
+			.finally(() => {});
 	};
 
 	return (
@@ -105,7 +114,12 @@ const Login = () => {
 					</Link>
 				</p>
 				<div className='divider'>OR</div>
-				<button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+				<button
+					onClick={() => handleGoogleLogin}
+					className='btn border-red-500 btn-outline w-full'
+				>
+					CONTINUE WITH GOOGLE
+				</button>
 			</div>
 		</div>
 	);

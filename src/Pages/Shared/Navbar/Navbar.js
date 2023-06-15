@@ -73,7 +73,7 @@ const Navbar = () => {
 			<div className='navbar-center hidden lg:flex'>
 				<ul className='menu menu-horizontal p-0'>{menuItems}</ul>
 			</div>
-			<label
+			{/* <label
 				tabIndex={2}
 				htmlFor='dashboard-drawer'
 				className='btn btn-ghost lg:hidden'
@@ -92,7 +92,7 @@ const Navbar = () => {
 						d='M4 6h16M4 12h8m-8 6h16'
 					/>
 				</svg>
-			</label>
+			</label> */}
 		</div>
 	);
 };
